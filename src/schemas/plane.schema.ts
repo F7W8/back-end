@@ -22,5 +22,9 @@ export class Plane {
   content: string;
   @Prop({ required: true })
   expireAt: Date;
+  @Prop({ required: false })
+  email: String;
+  @Prop({ required: false, default: false})
+  checked: Boolean;
 }
 export const PlaneSchema = SchemaFactory.createForClass(Plane);
