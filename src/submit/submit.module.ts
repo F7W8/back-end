@@ -5,8 +5,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Submit, SubmitSchema } from './schemas/submit.schema';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: Submit.name, schema: SubmitSchema }])],
+  imports: [
+    MongooseModule.forFeature([{ name: Submit.name, schema: SubmitSchema }]),
+  ],
   controllers: [SubmitController],
-  providers: [SubmitService]
+  providers: [SubmitService],
 })
 export class SubmitModule {}
