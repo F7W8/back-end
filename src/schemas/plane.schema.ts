@@ -10,14 +10,14 @@ import mongoose, { HydratedDocument } from 'mongoose';
 //     createdAt: { type: Date, default: Date.now },
 // })
 
-export type SubmitDocument = HydratedDocument<Submit>;
+export type PlaneDocument = HydratedDocument<Plane>;
 
 @Schema()
-export class Submit {
+export class Plane {
   @Prop({required: true})
   content: string;
   @Prop({required: true})
   expireAt: string;
 }
 
-export const SubmitSchema = SchemaFactory.createForClass(Submit);
+export const PlaneSchema = SchemaFactory.createForClass(Plane);

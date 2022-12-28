@@ -1,7 +1,7 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { SubmitService } from './submit.service';
 import { RequestSubmitDto } from './dto/requestSubmitDto';
-import { Submit } from './schemas/submit.schema';
+import { Plane } from '../schemas/plane.schema';
 
 @Controller('airplane/submit')
 export class SubmitController {
