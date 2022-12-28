@@ -1,6 +1,7 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { SubmitService } from './submit.service';
 import { RequestSubmitDto } from './dto/requestSubmitDto';
+import { Submit } from './schemas/submit.schema';
 
 @Controller('airplane/submit')
 export class SubmitController {
@@ -10,4 +11,5 @@ export class SubmitController {
   create(@Body() requestSubmitDto: RequestSubmitDto) {
     return this.submitService.create(requestSubmitDto);
   }
+
 }
