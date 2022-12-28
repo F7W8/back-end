@@ -7,7 +7,7 @@ export class StorageController {
   constructor(private readonly storageService: StorageService) {}
 
   @Get()
-  findOne() {
-    return this.storageService.findOne();
+  findAll() {
+    return this.storageService.findAll();
   }
 }

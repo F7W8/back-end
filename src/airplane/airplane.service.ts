@@ -10,7 +10,6 @@ export class AirplaneService {
   getNickname(nickname: string) {
     try {
       console.log(nickname);
-      this.storageService.setNickname(nickname);
       // 가져온 닉네임을 키값으로 게시글(비행기) get
     } catch (error) {
       console.log(error);
