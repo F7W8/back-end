@@ -16,6 +16,8 @@ export type SubmitDocument = HydratedDocument<Submit>;
 export class Submit {
   @Prop({required: true})
   content: string;
+  @Prop({required: true})
+  expireAt: string;
 }
 
 export const SubmitSchema = SchemaFactory.createForClass(Submit);
