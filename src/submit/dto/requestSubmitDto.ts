@@ -1,4 +1,6 @@
 export class RequestSubmitDto {
   content: string;
-  expireAt: string;
+  year: string;
+  month: string;
+  day: string;
 }

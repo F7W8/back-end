@@ -8,10 +8,13 @@ import { StorageModule } from './storage/storage.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot("mongodb+srv://admin:clfwjsvkfrl@userlist.5xs1dxx.mongodb.net/?retryWrites=true&w=majority", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }),
+    MongooseModule.forRoot(
+      'mongodb+srv://admin:clfwjsvkfrl@userlist.5xs1dxx.mongodb.net/?retryWrites=true&w=majority',
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      },
+    ),
     SubmitModule,
     StorageModule,
     AirplaneModule,

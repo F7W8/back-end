@@ -1,6 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { HydratedDocument } from 'mongoose';
+import mongoose, { HydratedDocument, SchemaOptions } from 'mongoose';
 
+const options: SchemaOptions = {
+  timestamps: true, // 디비에 만들어진 일자 찍어줌
+};
 // export const SubmitSchema = new mongoose.Schema({
 //     // userName: {type: String, required: true},
 //     // title: {type: String, required: true},
@@ -14,10 +17,7 @@ export type PlaneDocument = HydratedDocument<Plane>;
 
 @Schema()
 export class Plane {
-  @Prop({required: true})
+  @Prop({ required: true })
   content: string;
-  @Prop({required: true})
-  expireAt: string;
 }
-
 export const PlaneSchema = SchemaFactory.createForClass(Plane);

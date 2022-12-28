@@ -1,5 +1,4 @@
 import { Body, Injectable, Query } from '@nestjs/common';
-import { requestStorageDto } from './dto/requestStorage.dto';
 import { responseStorageDto } from './dto/responseStorage.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -28,5 +27,10 @@ export class StorageService {
       console.log(error);
       return error;
     }
+  }
+  getDate(year: string, month: string, day: string) {
+    const dateString = year + '-' + month + '-' + day;
+    const date = new Date(dateString);
+    return date;
   }
 }

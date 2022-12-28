@@ -5,8 +5,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Plane, PlaneSchema } from '../schemas/plane.schema';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: Plane.name, schema: PlaneSchema }])],
+  imports: [
+    MongooseModule.forFeature([{ name: Plane.name, schema: PlaneSchema }]),
+  ],
   controllers: [SubmitController],
-  providers: [SubmitService]
+  providers: [SubmitService],
 })
 export class SubmitModule {}

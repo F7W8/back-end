@@ -11,5 +11,4 @@ export class SubmitController {
   create(@Body() requestSubmitDto: RequestSubmitDto) {
     return this.submitService.create(requestSubmitDto);
   }
-
 }
