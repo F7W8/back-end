@@ -19,5 +19,7 @@ export type PlaneDocument = HydratedDocument<Plane>;
 export class Plane {
   @Prop({ required: true })
   content: string;
+  @Prop({ required: true })
+  expireAt: Date;
 }
 export const PlaneSchema = SchemaFactory.createForClass(Plane);
