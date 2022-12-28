@@ -13,11 +13,11 @@ const options: SchemaOptions = {
 //     createdAt: { type: Date, default: Date.now },
 // })
 
-export type SubmitDocument = HydratedDocument<Submit>;
+export type PlaneDocument = HydratedDocument<Plane>;
+
 @Schema()
-export class Submit {
+export class Plane {
   @Prop({ required: true })
   content: string;
 }
-
-export const SubmitSchema = SchemaFactory.createForClass(Submit);
+export const PlaneSchema = SchemaFactory.createForClass(Plane);
