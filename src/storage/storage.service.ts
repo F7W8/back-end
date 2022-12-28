@@ -13,7 +13,7 @@ const oneDay = 1000 * 60 * 60 * 24;
 export class StorageService {
   constructor(
     @InjectModel(Plane.name) private readonly planeModel: Model<PlaneDocument>,
-  ) {}
+  ) { }
 
   async find(@Body() body): Promise<Array<Object>> {
     try {
@@ -27,7 +27,21 @@ export class StorageService {
       } else {
         const planesList = await this.planeModel.find().exec();
         console.log(planesList);
-        return planesList;
+        const parsedList = [];
+        for (let plane of planesList) {
+          var dday = 0
+          try {
+            dday = this.getDDay(plane.expireAt)
+          } catch {
+            continue
+          }
+
+          let data = { _id: plane.id, content: plane.content, dday: dday, checked: plane.checked }
+          parsedList.push(data)
+          console.log("--------------------------")
+          console.log(parsedList)
+        }
+        return parsedList;
       }
     } catch (error) {
       console.log(error);
