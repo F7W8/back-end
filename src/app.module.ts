@@ -5,6 +5,8 @@ import { AppService } from './app.service';
 import { AirplaneModule } from './airplane/airplane.module';
 import { SubmitModule } from './submit/submit.module';
 import { StorageModule } from './storage/storage.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -18,6 +20,8 @@ import { StorageModule } from './storage/storage.module';
     SubmitModule,
     StorageModule,
     AirplaneModule,
+    AuthModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
