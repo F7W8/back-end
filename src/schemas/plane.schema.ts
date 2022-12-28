@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument, SchemaOptions } from 'mongoose';
+import internal from 'stream';
 
 const options: SchemaOptions = {
   timestamps: true, // 디비에 만들어진 일자 찍어줌

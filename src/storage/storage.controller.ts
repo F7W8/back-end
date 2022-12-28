@@ -8,7 +8,7 @@ export class StorageController {
   constructor(private readonly storageService: StorageService) {}
 
   @Get()
-  async find(@Body() body): Promise<Plane[]> {
+  async find(@Body() body): Promise<Array<Object>> {
     return this.storageService.find(body);
   }
 }
