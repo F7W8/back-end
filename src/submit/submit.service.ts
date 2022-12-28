@@ -7,15 +7,22 @@ import { Plane, PlaneDocument } from '../schemas/plane.schema';
 @Injectable()
 export class SubmitService {
   constructor(
-    @InjectModel(Plane.name) private submitModel: Model<PlaneDocument>,
+    @InjectModel(Plane.name) private planeModel: Model<PlaneDocument>,
   ) {}
   async create(requestSubmitDto: RequestSubmitDto): Promise<Plane> {
     try {
-      const createdSubmit = await new this.submitModel(requestSubmitDto).save();
+      let parsedDate = this.getDate(requestSubmitDto.year, requestSubmitDto.month, requestSubmitDto.day);
+      let parsedData = {content : requestSubmitDto.content, expireAt : parsedDate}
+      const createdSubmit = await new this.planeModel(parsedData).save();
       return createdSubmit;
     } catch (error) {
       console.log(error);
       return error;
     }
+  }
+  getDate(year: string, month: string, day: string) {
+    const dateString = year + '-' + month + '-' + day;
+    const date = new Date(dateString);
+    return date;
   }
 }

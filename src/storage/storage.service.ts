@@ -1,8 +1,13 @@
-import { Injectable } from '@nestjs/common';
+/* eslint-disable @typescript-eslint/ban-types */
+import { Body, Injectable, Query } from '@nestjs/common';
+import { responseStorageDto } from './dto/responseStorage.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Plane, PlaneDocument } from '../schemas/plane.schema';
 // import { AirplaneService } from '../airplane/airplane.service';
+
+const TIME_ZONE = 3240 * 10000;
+const oneDay = 1000 * 60 * 60 * 24;
 
 @Injectable()
 export class StorageService {
@@ -10,17 +15,20 @@ export class StorageService {
     @InjectModel(Plane.name) private readonly planeModel: Model<PlaneDocument>,
   ) {}
 
-  async findAll(): Promise<Plane[]> {
+  async find(@Body() body): Promise<Array<Object>> {
     try {
-      // id에 해당하는 테이블을 db에서 받아오고
-      // return this.objectModel.find().exec();
-      // 그거를 date 형식으로 바꿔줌
-      this.getDate('2022', '12', '28');
-      // 만약 그게 현재 날짜보다 작다면 -> 잠금해제 및 메시지 보여줌
-      // 아니면 toast "비행기가 아직 도착하지 않았습니다."
-      const planeList = await this.planeModel.find().exec();
-      console.log(planeList);
-      return planeList;
+      if (body.id) {
+        const planeList = await this.planeModel
+          .findOne({ _id: body.id })
+          .exec();
+        console.log(planeList);
+        const dday = this.getDDay(planeList.expireAt);
+        return [{ _id: planeList.id, content: planeList.content, dday: dday }];
+      } else {
+        const planesList = await this.planeModel.find().exec();
+        console.log(planesList);
+        return planesList;
+      }
     } catch (error) {
       console.log(error);
       return error;
@@ -30,5 +38,14 @@ export class StorageService {
     const dateString = year + '-' + month + '-' + day;
     const date = new Date(dateString);
     return date;
+  }
+  getDDay(date: Date) {
+    const parsedNow = new Date(+new Date() + TIME_ZONE)
+      .toISOString()
+      .split('T')[0];
+    const parsedNowDate = new Date(parsedNow);
+    const dday = (date.getTime() - parsedNowDate.getTime()) / oneDay;
+    console.log(dday);
+    return dday;
   }
 }

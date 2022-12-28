@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument, SchemaOptions } from 'mongoose';
+import internal from 'stream';
 
 const options: SchemaOptions = {
   timestamps: true, // 디비에 만들어진 일자 찍어줌
@@ -19,5 +20,7 @@ export type PlaneDocument = HydratedDocument<Plane>;
 export class Plane {
   @Prop({ required: true })
   content: string;
+  @Prop({ required: true })
+  expireAt: Date;
 }
 export const PlaneSchema = SchemaFactory.createForClass(Plane);
