@@ -8,7 +8,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 export class SubmitController {
   constructor(private readonly submitService: SubmitService) {}
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() requestSubmitDto: RequestSubmitDto) {
     return this.submitService.create(requestSubmitDto);
