@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Query, Body } from '@nestjs/common';
 import { StorageService } from './storage.service';
 import { Plane } from '../schemas/plane.schema';
 
@@ -7,7 +7,7 @@ export class StorageController {
   constructor(private readonly storageService: StorageService) {}
 
   @Get()
-  async findAll(): Promise<Plane[]> {
-    return this.storageService.findAll();
+  async find(@Body() body): Promise<Plane[]> {
+    return this.storageService.find(body);
   }
 }
