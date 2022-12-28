@@ -2,7 +2,7 @@ import { Controller, Get, Param } from '@nestjs/common';
 import { StorageService } from './storage.service';
 import { Plane } from '../schemas/plane.schema';
 
-@Controller('storage')
+@Controller('airplane/storage')
 export class StorageController {
   constructor(private readonly storageService: StorageService) {}
 
